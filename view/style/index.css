@@ -1,0 +1,46 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-image: url(../assets/wallpaper_index.jpg);
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
+}
+
+main {
+    width: 80%;
+    height: auto;
+    margin : auto;
+    text-align: center;
+    color: white;
+    text-decoration: 2px 2px 2px 2px black;
+    padding-top: 50px;
+    padding-bottom: 15vh;
+}
+
+h1 {
+    margin: 20px 0;
+    color: #fff;
+    font-size: 8vh;
+    margin-top: 80px;
+}
+
+main a {
+    color: rgb(14, 219, 255);
+    text-decoration: none;
+}
+
+main p {
+    display: block;
+    font-size: 4vh;
+    margin-top: 100Px;
+    font-weight: 600;
+    text-shadow: 1px 1px black;
+}
+
+
+
+
+

@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background: linear-gradient(319deg, #438dfffc, transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+#title_planning {
+    color: white;
+    text-shadow: 1px 1px black;
+    font-size: 35px;
+}
+
+.locationplanning {
+    color: rgb(36, 159, 168);
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.btn-primary {
+    color: rgb(36, 159, 168);
+    font-size: 50px;
+}
+
+table {
+    width:80%;
+    height:80%;
+    text-align: center;
+    background: linear-gradient(90deg,white, rgb(252, 253, 207));
+    border: 5px rgb(255, 255, 255) solid;
+    border-radius: 20px;
+    margin-bottom: 5vh;
+}
+
+td {
+    padding: 10px;
+    border: 2px dashed rgb(194, 191, 191);
+    border-radius: 20px;
+    vertical-align: top;
+}
+
+tr {
+    min-height: 100vh;
+}
+
+.planning__weekday {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    font-size:1.3em;
+    text-shadow: 0 0 3px black;
+}
+
+.planning__othermonth .planning__day {
+    opacity:0.2;
+}
+
+.planning__day {
+    color: rgb(36, 159, 168);
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.planning__reservations {
+    color: white;
+}

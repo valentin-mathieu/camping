@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    text-align: center;
+    padding-top: 5vh;
+    color: white;
+    background: linear-gradient(319deg, #438dfffc, transparent);
+    padding-bottom: 2vh;
+}
+
+fieldset{
+    border:0;
+}
+
+legend {
+    padding-top: 1.5vh;
+    padding-bottom: 1vh;
+}
+
+fieldset > label {
+    color: rgb(124, 124, 124);
+    font-size: 18px;
+}
+
+label, legend {
+    font-size: 20px;
+}
+
+input.date, select {
+    margin-top: 1.5vh;
+    margin-bottom: 1vh;
+    background-color: rgb(212, 207, 191);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    border: 3px solid rgb(105, 105, 105);
+    text-shadow: 1px 1px black;
+}
+
+.titre {
+    font-size: 30px;
+}
+
+.intro {
+    font-size: 22px;
+    color: rgb(124, 124, 124);
+}
+
+.submitbtn {
+    background: rgb(4, 12, 128);
+    color: rgb(214, 214, 214);
+    border: rgb(255, 255, 255) 3px solid;
+    border-radius: 6px;
+    font-family: 'Dongle';
+    font-size: 25px;
+    opacity: 0.8;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+
+.submitbtn:hover {
+    transform:scale(1.05);
+    cursor: pointer;
+}
+
+.err_form {
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
+
