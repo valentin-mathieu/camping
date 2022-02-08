@@ -8,13 +8,14 @@ require('../model/classes/class_locations.php');
 
 require('../model/classes/class_equipments.php');
 
-$form_updatebooking = 1;
+$calculrate = 0;
+
 // CONTROLLER FUNCTION BOOKING
 
 if (!empty($_POST)) {
     extract($_POST);
 
-    if (isset($_POST['updatebooking'])) {
+    if (isset($_POST['calculate'])) {
 
         $arrival = $_POST['arrival'];
         $departure = $_POST['departure'];
@@ -23,39 +24,27 @@ if (!empty($_POST)) {
         $id_user = $_SESSION['id'];
 
         if (isset($_POST['option_borne'])){
-
             $option_borne = 1;
-
         }
 
         else {
-
             $option_borne = 0;
-
         }
         
         if (isset($_POST['option_discoclub'])){
-
             $option_discoclub = 1;
-
         }
 
         else {
-
             $option_discoclub = 0;
-
         }
 
         if (isset($_POST['option_activities'])) {
-
             $option_activities = 1;
-
         }
 
         else {
-
             $option_activities = 0;
-
         }
 
         $today_date = date('Y-m-d');
@@ -71,6 +60,15 @@ if (!empty($_POST)) {
             $err_field = "Les champs avec (*) doivent être remplis.";
         }
 
+        // Check if arrival date is at least one day after today
+
+        elseif($arrival < $today_date ) {
+            $valid = false;
+            $err_date = "La date d'arrivée ne peut être antérieure à celle du jour.";
+        }
+
+        // Check if departure date is at least one day after arrival
+
         elseif(!empty($arrival) && !empty ($departure) && $arrival > $departure) {
             $valid = false;
             $err_date = "La date de départ ne peut pas être antérieure à l'arrivée.";
@@ -80,9 +78,6 @@ if (!empty($_POST)) {
             $valid = false;
             $err_date ="La réservation doit être au moins d'une nuit.";
         }
-
-        // check if available spaces
-
 
         $booking_id_location = new Reservations ();
         $id_location = $booking_id_location->GetIdLocation("$location");
@@ -138,7 +133,6 @@ if (!empty($_POST)) {
             // récupération de la place prise par les équipements soit 2 places pour un camping car.
 
             if($id_equipment == 1) { $equipment_space = 1 ; } else { $equipment_space = 2 ; }
-
 
             // pour une réservation de 10 jours, l'espace disponible de base est donc de 4x 10 soit 40.
 
@@ -318,22 +312,14 @@ if (!empty($_POST)) {
             $drop_shortlived_table = new Reservations();
             $drop_shortlived_table->DROPTABLE();
         }
-     
+    
 
-     
         if($valid == true) {
 
+            $calculrate = 1;
             // getting the length
-
             $booking_length = new Reservations ();
             $length = $booking_length->CalculLength("$arrival", "$departure");
-            
-
-            // getting the rate 
-
-            $booking_rate = new Reservations ();
-            $rate = $booking_rate->CalculRate("$equipment", "$option_borne", "$option_discoclub", "$option_activities", "$length");
-            
 
             //getting ids
 
@@ -342,18 +328,22 @@ if (!empty($_POST)) {
 
             $booking_id_equipment = new Reservations ();
             $id_equipment = $booking_id_equipment->GetIdEquipment("$equipment");
+
+            // getting the rate 
+            $booking_rate = new Reservations ();
+            $rate = $booking_rate->CalculRate("$equipment", "$option_borne", "$option_discoclub", "$option_activities", "$length");
             
-
-
-            // booking in BDD
-
-            $booking = new Reservations ();
-            $booking->UpdateBooking("$arrival", "$departure", "$length", "$option_borne", "$option_discoclub", "$option_activities", "$rate", "$id_user", "$id_location", "$id_equipment");
-            
-            unset($_SESSION['id_reservation']);
-
-            $form_updatebooking = 0;
+            $_SESSION['arrival'] = $arrival; 
+            $_SESSION['departure'] = $departure;
+            $_SESSION['id_equipment'] = $id_equipment; 
+            $_SESSION['id_location'] = $id_location; 
+            $_SESSION['length'] = $length;
+            $_SESSION['option_borne'] = $option_borne;
+            $_SESSION['option_discoclub'] = $option_discoclub;
+            $_SESSION['option_activities'] = $option_activities;
+            $_SESSION['rate'] = $rate;
         }
+
     }
 }
 
